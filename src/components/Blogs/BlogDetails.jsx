@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 
+import { MdBookmarkAdd } from "react-icons/md";
+
 import { Link, Outlet, useLoaderData } from "react-router-dom";
+
+import { saveDataToLocalStorage } from "../../utilities";
 
 const BlogDetails = () => {
   const singleBlog = useLoaderData();
+  
   // console.log(singleBlog);
 
   const {
@@ -19,6 +24,13 @@ const BlogDetails = () => {
   } = singleBlog;
 
 
+  const handleBookmarks = (singleBlog) => {
+    console.log(singleBlog);
+    
+    saveDataToLocalStorage(singleBlog);
+   
+
+  }
   const [tabIndex, setTabIndex] = useState(0);
 
   
@@ -84,7 +96,12 @@ const BlogDetails = () => {
                 </svg>
                 <span>Author</span>
               </Link>
-             
+            <div className="p-2 ml-5 overflow-hidden rounded-full cursor-pointer bg-primary hover:bg-opacity-30 bg-opacity-20 hover:scale-105 dark:bg-gray-300 dark:hover:bg-opacity-30 dark:hover:text-gray-800"
+            onClick={() => handleBookmarks(singleBlog)}
+            >
+              <MdBookmarkAdd size={20} className="text-secondary" />
+         
+            </div>
             </div>
           </div>
           <Outlet className="w-full gap-0"/>

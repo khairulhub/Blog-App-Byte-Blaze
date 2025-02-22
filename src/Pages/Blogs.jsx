@@ -1,24 +1,20 @@
 // import React, { useEffect, useState } from 'react';
 
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigation } from "react-router-dom";
 
-import BlogsCard from "../components/Blogs/BlogsCard";
 import placeholder from "../assets/404.jpg";
+import BlogsCard from "../components/Blogs/BlogsCard";
+import Loader from "../components/Loader/Loader";
+
 
 const Blogs = () => {
-    // const [blogs, setBlogs] = useState([]);
-    // useEffect(()=>{
-    //     fetch('https://dev.to/api/articles?per_pages=20&top=7')
-    //     .then(res=>res.json())
-    //     .then(data=>setBlogs(data))
-
-    // },[])
-    // console.log(blogs);
-
     
+   
+    const navigation = useNavigation();
     const blogs = useLoaderData();
     console.log(blogs.length);
     
+    if(navigation.state === 'loading') return <Loader />
     return (
         <div>
         <section className="text-gray-100 dark:bg-gray-100 dark:text-gray-800">
@@ -33,7 +29,7 @@ const Blogs = () => {
             </a>
             <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
                {
-                blogs.map(blog => <BlogsCard key={blog.id} blog={blog} />)
+                blogs.slice(1,19).map(blog => <BlogsCard key={blog.id} blog={blog} />)
                }
               
             </div>

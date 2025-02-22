@@ -10,6 +10,7 @@ import placeholder from "../../assets/404.jpg";
 
 const BlogDetailsContent = () => {
     const singleBlog = useLoaderData();
+   
   const {
     cover_image,
     title,
@@ -21,14 +22,16 @@ const BlogDetailsContent = () => {
     public_reactions_count,
     tags, body_html
   } = singleBlog;
+
+  
   return (
 
-    <div className="p-2 mx-auto bg-gray-900 border-2 group hover:no-underline focus:no-underline dark:bg-gray-50 border-opacity-30">
+    <div className="container p-2 mx-auto bg-gray-900 border-2 group hover:no-underline focus:no-underline dark:bg-gray-50 border-opacity-30">
            <img role="presentation" className="object-cover w-full bg-gray-500 rounded h-44 dark:bg-gray-500" src={cover_image || placeholder} />
            <div className="flex flex-wrap gap-2 py-6 border-t border-gray-400 border-dashed dark:border-gray-600">
             {
               tags.map((tag) => 
-                  <Link key={tags.id}
+                  <Link key={tags.index}
                 
                 className="px-3 py-1 text-gray-900 rounded-sm bg-violet-400 dark:bg-violet-600 dark:text-gray-50"
               >
